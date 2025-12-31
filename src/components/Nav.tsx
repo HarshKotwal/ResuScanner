@@ -11,7 +11,7 @@ export default function Navbar() {
           className="text-3xl bg-linear-to-r from-blue-300 to-blue-950 bg-clip-text text-transparent"
           style={{ fontFamily: "'Archivo Black', sans-serif" }}
         >
-          ResuScan
+          ResuScanner
         </h1>
       </div>
       <div
