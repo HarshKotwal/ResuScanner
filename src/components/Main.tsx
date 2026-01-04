@@ -2,7 +2,7 @@ export default function Main() {
   return (
     <div className="flex justify-center mt-10 mx-10">
       <div className="w-200 p-18 ">
-        <span className=" bg-linear-to-r from-lime-400 to-cyan-600 bg-clip-text text-transparent">
+        <span className=" bg-linear-to-r from-red-400 to-sky-400 bg-clip-text text-transparent">
           ~ ATS Resume/CV scanner system
         </span>
         <div className="pt-10 pr-11 text-5xl leading-15 font-extrabold ">
@@ -24,7 +24,10 @@ export default function Main() {
             Our scanner reveals hidden formatting issues, missing keywords, and
             structural gaps that block ATS shortlisting.
           </div>
-          <button className="mt-15 border-2 p-4 rounded-4xl bg-cyan-950 text-white font-extrabold text-center">
+          <button
+            className="mt-15 border-2 p-4 rounded-4xl bg-cyan-950 text-white font-extrabold text-center cursor-pointer"
+            onClick={alert}
+          >
             Upload Your Resume
           </button>
           <div className="font-light text-xs mt-4">privacy gauranteed</div>
