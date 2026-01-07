@@ -18,15 +18,15 @@ function App() {
             performance, issues, and optimization opportunities.
           </h2>
         </div>
-      </section>
 
-      {resumes.length > 0 && (
-        <div className="resume-section">
-          {resumes.map((resume) => (
-            <ResumeCard key={resume.id} resume={resume} />
-          ))}
-        </div>
-      )}
+        {resumes.length > 0 && (
+          <div className="resume-section">
+            {resumes.map((resume) => (
+              <ResumeCard key={resume.id} resume={resume} />
+            ))}
+          </div>
+        )}
+      </section>
     </main>
   );
 }
