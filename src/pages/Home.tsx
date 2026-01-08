@@ -1,8 +1,20 @@
 import Navbar from "../components/Navbar";
 import ResumeCard from "../components/ResumeCard";
 import { resumes } from "../constants";
+import { useNavigate } from "react-router-dom";
+import { usePuterStore } from "../lib/puter";
+import { useEffect } from "react";
 
 const Home = () => {
+  const { auth } = usePuterStore();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth.isAuthenticated) {
+      navigate("/auth?next=/");
+    }
+  }, [auth.isAuthenticated, navigate]);
+
   return (
     <main className="bg-[url('/assets/public/images/bg-main.svg')] bg-cover">
       <Navbar />

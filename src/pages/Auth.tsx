@@ -1,6 +1,20 @@
 import { useEffect } from "react";
+import { usePuterStore } from "../lib/puter";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Auth = () => {
+  const { isLoading, auth } = usePuterStore();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = new URLSearchParams(location.search);
+  const next = params.get("next") || "/";
+
+  useEffect(() => {
+    if (auth.isAuthenticated) {
+      navigate(next);
+    }
+  }, [auth.isAuthenticated, next, navigate]);
+
   useEffect(() => {
     document.title = "ResuScanner | Auth";
   }, []);
@@ -12,6 +26,26 @@ const Auth = () => {
           <div className="flex flex-col items-center gap-2 text-center">
             <h1>Welcome</h1>
             <h2>Log In to Continue Your Job Journey</h2>
+          </div>
+
+          <div>
+            {isLoading ? (
+              <button className="auth-button animate-pulse">
+                <p>Signing you in...</p>
+              </button>
+            ) : (
+              <>
+                {auth.isAuthenticated ? (
+                  <button className="auth-button " onClick={auth.signOut}>
+                    <p>Log Out</p>
+                  </button>
+                ) : (
+                  <button className="auth-button " onClick={auth.signIn}>
+                    <p>Log In</p>
+                  </button>
+                )}
+              </>
+            )}
           </div>
         </section>
       </div>
