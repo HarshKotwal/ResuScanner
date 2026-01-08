@@ -9,7 +9,7 @@ function App() {
       <Navbar />
 
       <section className="main-section">
-        <div className="page-handling">
+        <div className="page-handling py-16">
           <h1 className="text-center">
             Know Your ATS Score Before Recruiters Do
           </h1>
