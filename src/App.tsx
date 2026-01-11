@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import { usePuterStore } from "./lib/puter";
 import { useEffect } from "react";
+import Upload from "./pages/Upload";
 
 function App() {
   const { init } = usePuterStore();
@@ -15,6 +16,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/upload" element={<Upload />} />
     </Routes>
   );
 }
