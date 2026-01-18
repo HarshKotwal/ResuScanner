@@ -16,16 +16,16 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
     score > 69
       ? "from-green-100"
       : score > 49
-      ? "from-yellow-100"
-      : "from-red-100";
+        ? "from-yellow-100"
+        : "from-red-100";
 
   // Determine icon based on score
   const iconSrc =
     score > 69
-      ? "/icons/ats-good.svg"
+      ? "/assets/public/icons/ats-good.svg"
       : score > 49
-      ? "/icons/ats-warning.svg"
-      : "/icons/ats-bad.svg";
+        ? "/assets/public/icons/ats-warning.svg"
+        : "/assets/public/icons/ats-bad.svg";
 
   // Determine subtitle based on score
   const subtitle =
@@ -58,8 +58,8 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
               <img
                 src={
                   suggestion.type === "good"
-                    ? "/icons/check.svg"
-                    : "/icons/warning.svg"
+                    ? "/assets/public/icons/check.svg"
+                    : "/assets/public/icons/warning.svg"
                 }
                 alt={suggestion.type === "good" ? "Check" : "Warning"}
                 className="w-5 h-5 mt-1"

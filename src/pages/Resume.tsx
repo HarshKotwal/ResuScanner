@@ -14,41 +14,53 @@ const Resume = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && !auth.isAuthenticated) {
+    if (!isLoading && !auth.isAuthenticated && id) {
       navigate(`/auth?next=/resume/${id}`);
     }
-  }, [isLoading]);
+  }, [isLoading, auth.isAuthenticated, id, navigate]);
 
   useEffect(() => {
     document.title = "ResuScanner | Review";
   }, []);
 
   useEffect(() => {
+    if (!id) return;
+
+    let resumeObjectUrl: string | null = null;
+    let imageObjectUrl: string | null = null;
+
     const loadResume = async () => {
       const resume = await kv.get(`resume:${id}`);
-
       if (!resume) return;
 
       const data = JSON.parse(resume);
 
       const resumeBlob = await fs.read(data.resumePath);
+      console.log("resumeBlob", resumeBlob);
       if (!resumeBlob) return;
 
-      const pdfBlob = new Blob([resumeBlob], { type: "application/pdf" });
-      const resumeUrl = URL.createObjectURL(pdfBlob);
-      setResumeUrl(resumeUrl);
+      resumeObjectUrl = URL.createObjectURL(
+        new Blob([resumeBlob], { type: "application/pdf" }),
+      );
+      setResumeUrl(resumeObjectUrl);
 
       const imageBlob = await fs.read(data.imagePath);
+      console.log("imageBlob", imageBlob);
       if (!imageBlob) return;
-      const imageUrl = URL.createObjectURL(imageBlob);
-      setImageUrl(imageUrl);
+
+      imageObjectUrl = URL.createObjectURL(imageBlob);
+      setImageUrl(imageObjectUrl);
 
       setFeedback(data.feedback);
-      console.log({ resumeUrl, imageUrl, feedback: data.feedback });
     };
 
     loadResume();
-  }, [id]);
+
+    return () => {
+      if (resumeObjectUrl) URL.revokeObjectURL(resumeObjectUrl);
+      if (imageObjectUrl) URL.revokeObjectURL(imageObjectUrl);
+    };
+  }, [id, fs, kv]);
 
   return (
     <main className="pt-0!">

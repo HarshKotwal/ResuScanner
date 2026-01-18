@@ -14,12 +14,16 @@ const ScoreBadge = ({ score }: { score: number }) => {
         score > 69
           ? "bg-badge-green"
           : score > 39
-          ? "bg-badge-yellow"
-          : "bg-badge-red"
+            ? "bg-badge-yellow"
+            : "bg-badge-red",
       )}
     >
       <img
-        src={score > 69 ? "/icons/check.svg" : "/icons/warning.svg"}
+        src={
+          score > 69
+            ? "/assets/public/icons/check.svg"
+            : "/assets/public/icons/warning.svg"
+        }
         alt="score"
         className="size-4"
       />
@@ -29,8 +33,8 @@ const ScoreBadge = ({ score }: { score: number }) => {
           score > 69
             ? "text-badge-green-text"
             : score > 39
-            ? "text-badge-yellow-text"
-            : "text-badge-red-text"
+              ? "text-badge-yellow-text"
+              : "text-badge-red-text",
         )}
       >
         {score}/100
@@ -66,7 +70,9 @@ const CategoryContent = ({
           <div className="flex flex-row gap-2 items-center" key={index}>
             <img
               src={
-                tip.type === "good" ? "/icons/check.svg" : "/icons/warning.svg"
+                tip.type === "good"
+                  ? "/assets/public/icons/check.svg"
+                  : "/assets/public/icons/warning.svg"
               }
               alt="score"
               className="size-5"
@@ -83,15 +89,15 @@ const CategoryContent = ({
               "flex flex-col gap-2 rounded-2xl p-4",
               tip.type === "good"
                 ? "bg-green-50 border border-green-200 text-green-700"
-                : "bg-yellow-50 border border-yellow-200 text-yellow-700"
+                : "bg-yellow-50 border border-yellow-200 text-yellow-700",
             )}
           >
             <div className="flex flex-row gap-2 items-center">
               <img
                 src={
                   tip.type === "good"
-                    ? "/icons/check.svg"
-                    : "/icons/warning.svg"
+                    ? "/assets/public/icons/check.svg"
+                    : "/assets/public/icons/warning.svg"
                 }
                 alt="score"
                 className="size-5"
