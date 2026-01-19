@@ -1,24 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 
-const ScoreGauge = ({ score = 75 }: { score: number }) => {
+const ScoreGauge = ({ score = 75 }: { score?: number }) => {
+  const safeScore = Math.min(100, Math.max(0, score));
+  const percentage = safeScore / 100;
+
   const [pathLength, setPathLength] = useState(0);
   const pathRef = useRef<SVGPathElement>(null);
-
-  const percentage = score / 100;
+  const gradientId = useRef(`gauge-${Math.random().toString(36).slice(2)}`);
 
   useEffect(() => {
     if (pathRef.current) {
       setPathLength(pathRef.current.getTotalLength());
     }
-  }, []);
+  }, [safeScore]);
 
   return (
     <div className="flex flex-col items-center">
       <div className="relative w-40 h-20">
-        <svg viewBox="0 0 100 50" className="w-full h-full">
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          viewBox="0 0 100 50"
+          className="w-full h-full"
+        >
           <defs>
             <linearGradient
-              id="gaugeGradient"
+              id={gradientId.current}
               x1="0%"
               y1="0%"
               x2="100%"
@@ -29,7 +36,6 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
             </linearGradient>
           </defs>
 
-          {/* Background arc */}
           <path
             d="M10,50 A40,40 0 0,1 90,50"
             fill="none"
@@ -38,12 +44,11 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
             strokeLinecap="round"
           />
 
-          {/* Foreground arc with rounded ends */}
           <path
             ref={pathRef}
             d="M10,50 A40,40 0 0,1 90,50"
             fill="none"
-            stroke="url(#gaugeGradient)"
+            stroke={`url(#${gradientId.current})`}
             strokeWidth="10"
             strokeLinecap="round"
             strokeDasharray={pathLength}
@@ -52,7 +57,7 @@ const ScoreGauge = ({ score = 75 }: { score: number }) => {
         </svg>
 
         <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-          <div className="text-xl font-semibold pt-4">{score}/100</div>
+          <div className="text-xl font-semibold pt-4">{safeScore}/100</div>
         </div>
       </div>
     </div>

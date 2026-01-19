@@ -12,24 +12,29 @@ interface ATSProps {
 
 const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
   // Determine background gradient based on score
+  const level = score > 69 ? "good" : score > 49 ? "warning" : "bad";
   const gradientClass =
-    score > 69
+    level === "good"
       ? "from-green-100"
-      : score > 49
+      : level === "warning"
         ? "from-yellow-100"
         : "from-red-100";
 
   // Determine icon based on score
   const iconSrc =
-    score > 69
+    level === "good"
       ? "/assets/public/icons/ats-good.svg"
-      : score > 49
+      : level === "warning"
         ? "/assets/public/icons/ats-warning.svg"
         : "/assets/public/icons/ats-bad.svg";
 
   // Determine subtitle based on score
   const subtitle =
-    score > 69 ? "Great Job!" : score > 49 ? "Good Start" : "Needs Improvement";
+    level === "good"
+      ? "Great Job!"
+      : level === "warning"
+        ? "Good Start"
+        : "Needs Improvement";
 
   return (
     <div
@@ -53,8 +58,8 @@ const ATS: React.FC<ATSProps> = ({ score, suggestions }) => {
 
         {/* Suggestions list */}
         <div className="space-y-3">
-          {suggestions.map((suggestion, index) => (
-            <div key={index} className="flex items-start gap-3">
+          {suggestions.map((suggestion) => (
+            <div key={suggestion.tip} className="flex items-start gap-3">
               <img
                 src={
                   suggestion.type === "good"

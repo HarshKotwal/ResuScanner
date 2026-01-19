@@ -35,8 +35,7 @@ const ResumeCard = ({
         <div className="flex flex-col gap-2">
           {companyName && (
             <h2 className="text-black! font-bold wrap-break-word">
-              {" "}
-              {companyName}{" "}
+              {companyName}
             </h2>
           )}
           {jobTitle && (
@@ -49,7 +48,7 @@ const ResumeCard = ({
           )}
         </div>
         <div className="shrink-0">
-          <ScoreCircle score={feedback.overallScore} />
+          <ScoreCircle score={feedback?.overallScore ?? 0} />
         </div>
       </div>
 
@@ -58,7 +57,8 @@ const ResumeCard = ({
           <div className="w-full h-full">
             <img
               src={resumeUrl}
-              alt="resume"
+              alt=""
+              aria-hidden="true"
               className="w-full h-87.5 max-sm:h-87.5 object-cover object-top"
             />
           </div>

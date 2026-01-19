@@ -1,14 +1,14 @@
 import ScoreBadge from "./ScoreBadge";
 import ScoreGauge from "./ScoreGauge";
 
-const Category = ({ title, score }: { title: string; score: number }) => {
-  const textColor =
-    score > 70
-      ? "text-green-600"
-      : score > 49
+const getScoreColor = (score: number) =>
+  score > 69
+    ? "text-green-600"
+    : score > 49
       ? "text-yellow-600"
       : "text-red-600";
 
+const Category = ({ title, score }: { title: string; score: number }) => {
   return (
     <div className="resume-summary">
       <div className="category">
@@ -17,17 +17,18 @@ const Category = ({ title, score }: { title: string; score: number }) => {
           <ScoreBadge score={score} />
         </div>
         <p className="text-2xl">
-          <span className={textColor}>{score}</span>/100
+          <span className={getScoreColor(score)}>{score}</span>/100
         </p>
       </div>
     </div>
   );
 };
 const Summary = ({ feedback }: { feedback: Feedback }) => {
+  if (!feedback) return null;
   return (
     <div className="bg-white rounded-2xl shadow-md w-full">
       <div className="flex flex-row items-center p-4 gap-8">
-        <ScoreGauge score={feedback.overallScore} />
+        <ScoreGauge score={feedback.overallScore ?? 0} />
 
         <div className="flex flex-col gap-2">
           <h2 className="text-2xl font-bold">Your Resume Score</h2>
@@ -37,10 +38,10 @@ const Summary = ({ feedback }: { feedback: Feedback }) => {
         </div>
       </div>
 
-      <Category title="Tone & Style" score={feedback.toneAndStyle.score} />
-      <Category title="Content" score={feedback.content.score} />
-      <Category title="Structure" score={feedback.structure.score} />
-      <Category title="Skills" score={feedback.skills.score} />
+      <Category title="Tone & Style" score={feedback.toneAndStyle.score ?? 0} />
+      <Category title="Content" score={feedback.content.score ?? 0} />
+      <Category title="Structure" score={feedback.structure.score ?? 0} />
+      <Category title="Skills" score={feedback.skills.score ?? 0} />
     </div>
   );
 };

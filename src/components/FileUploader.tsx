@@ -7,32 +7,31 @@ interface FileUploaderProps {
 }
 
 const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
+  const [resetKey, setResetKey] = useState(0);
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file: File = acceptedFiles[0] || null;
 
       onFileSelect?.(file);
     },
-    [onFileSelect]
+    [onFileSelect],
   );
 
   const maxFileSize = 20 * 1024 * 1024;
 
-  const { getRootProps, getInputProps, isDragActive, acceptedFiles } =
-    useDropzone({
-      onDrop,
-      multiple: false,
-      accept: { "application/pdf": [".pdf"] },
-      maxSize: maxFileSize,
-    });
+  const { getRootProps, getInputProps, acceptedFiles } = useDropzone({
+    onDrop,
+    multiple: false,
+    accept: { "application/pdf": [".pdf"] },
+    maxSize: maxFileSize,
+  });
 
   const file = acceptedFiles[0] || null;
 
   return (
     <div className="w-full gradient-border">
-      <div {...getRootProps()}>
+      <div key={resetKey} {...getRootProps()}>
         <input {...getInputProps()} />
-
         <div className="space-y-4 cursor-pointer">
           {file ? (
             <div
@@ -56,8 +55,9 @@ const FileUploader = ({ onFileSelect }: FileUploaderProps) => {
               </div>
               <button
                 className="p-2 cursor-pointer"
-                onClick={(e) => {
+                onClick={() => {
                   onFileSelect?.(null);
+                  setResetKey((k) => k + 1);
                 }}
               >
                 <img

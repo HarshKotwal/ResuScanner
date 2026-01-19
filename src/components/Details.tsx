@@ -66,8 +66,8 @@ const CategoryContent = ({
   return (
     <div className="flex flex-col gap-4 items-center w-full">
       <div className="bg-gray-50 w-full rounded-lg px-5 py-4 grid grid-cols-2 gap-4">
-        {tips.map((tip, index) => (
-          <div className="flex flex-row gap-2 items-center" key={index}>
+        {tips.map((tip) => (
+          <div className="flex flex-row gap-2 items-center" key={tip.tip}>
             <img
               src={
                 tip.type === "good"
@@ -116,7 +116,7 @@ const Details = ({ feedback }: { feedback: Feedback }) => {
   return (
     <div className="flex flex-col gap-4 w-full">
       <Accordion>
-        <AccordionItem id="tone-style">
+        <AccordionItem>
           <AccordionHeader itemId="tone-style">
             <CategoryHeader
               title="Tone & Style"
@@ -127,7 +127,7 @@ const Details = ({ feedback }: { feedback: Feedback }) => {
             <CategoryContent tips={feedback.toneAndStyle.tips} />
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem id="content">
+        <AccordionItem>
           <AccordionHeader itemId="content">
             <CategoryHeader
               title="Content"
@@ -138,7 +138,7 @@ const Details = ({ feedback }: { feedback: Feedback }) => {
             <CategoryContent tips={feedback.content.tips} />
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem id="structure">
+        <AccordionItem>
           <AccordionHeader itemId="structure">
             <CategoryHeader
               title="Structure"
@@ -149,7 +149,7 @@ const Details = ({ feedback }: { feedback: Feedback }) => {
             <CategoryContent tips={feedback.structure.tips} />
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem id="skills">
+        <AccordionItem>
           <AccordionHeader itemId="skills">
             <CategoryHeader
               title="Skills"
