@@ -17,7 +17,7 @@ It is designed to stimulate how modern Applicant Tracking Systems eveluate resum
 
 ## 🛠️ Tech Stack
 
-# Frontend
+**Frontend**
 
 - React + TypeScript (Vite)
 - Tailwind CSS
@@ -25,7 +25,7 @@ It is designed to stimulate how modern Applicant Tracking Systems eveluate resum
 - PDF.js for resume preview
 - Custom UI components
 
-# Backend / Services
+**Backend / Services**
 
 - Puter SDK (Auth, Storage, KV, AI)
 - AI-based resume analysis
@@ -99,7 +99,7 @@ Feel free to use, modify, and build upon it.
 
 ## Author
 
-Harsh Kotwal
+**Harsh Kotwal**
 
 - GitHub: https://github.com/HarshKotwal
 - LinkedIn: https://www.linkedin.com/in/harshkotwal07/
