@@ -1,73 +1,105 @@
-# React + TypeScript + Vite
+# 📄 ResuScanner – AI-Powered ATS Resume Analyzer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ResuScanner is a full-stack web application that analyzes resumes using AI and provides ATS scores, structured feedback, and improvement suggestions based on job roles and descriptions.
 
-Currently, two official plugins are available:
+It is designed to stimulate how modern Applicant Tracking Systems eveluate resumes, helping users optimize their profiles before submitting to recruiters
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+- Upload resume in PDF format
+- Enter job title, job description, and company name
+- AI-powered ATS scoring and analysis
+- Section-wise feedback (ATS, Content, Skills, Structure, Tone & Style)
+- Visual score indicators and detailed breakdown
+- Resume preview with generated image snapshot
+- Persistent resume history with revisit support
+- Clean, responsive UI with smooth animations
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+# Frontend
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript (Vite)
+- Tailwind CSS
+- React Router
+- PDF.js for resume preview
+- Custom UI components
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Backend / Services
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Puter SDK (Auth, Storage, KV, AI)
+- AI-based resume analysis
+- File system and key-value persistence
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## ⚙️ How It Works
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Upload Resume
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Upload a PDF resume along with job title and description.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. File Processing
+
+- Resume is uploaded to storage
+- PDF is converted into an image for preview
+
+3. AI Analysis
+
+- Resume content is analyzed against ATS criteria
+- Job description is used for contextual feedback
+
+4. Feedback Generation
+
+- ATS score out of 100
+- Section-wise tips and explanations
+- Structured JSON response parsed into UI
+
+5. Review & History
+
+- Resume review page shows detailed analysis
+- Uploaded resumes appear on the home screen
+
+## 🚀 Current Status
+
+Fully functional end-to-end:
+
+- Resume upload and preview working
+- AI feedback generation integrated
+- ATS scoring and detailed breakdown visible
+- Resume history stored and retrievable
+
+⚠️ Note: AI usage depends on available API balance when using Puter AI services.
+
+## 🌐Live Demo
+
+**Try it live:** https://puter.com/app/ai-ResuScanner-hk
+
+## 📦 Deployment
+
+- Frontend: Deployed using Puter App Hosting
+- Build Output: Vite dist/ folder
+- Environment: Client-side app with cloud-backed services
+
+## 🧪 Known Limitations
+
+- AI analysis depends on available service credits
+- Resume parsing quality depends on PDF formatting
+- Currently optimized for single-page resumes
+
+## 📄 License
+
+This project is licensed under the MIT License.
+Feel free to use, modify, and build upon it.
+
+## 🙌 Acknowledgments
+
+- PDF rendering powered by PDF.js
+- UI styling with Tailwind CSS
+- Icons and assets from open-source libraries
+- AI-driven insights inspired by modern ATS systems
+
+## Author
+
+Harsh Kotwal
+
+- GitHub: https://github.com/HarshKotwal
+- LinkedIn: https://www.linkedin.com/in/harshkotwal07/
